@@ -11,6 +11,7 @@ from flask import request, jsonify
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
+Port = 8000
 false = False
 restaurants = [
 {
@@ -546,3 +547,4 @@ def getAllRestaurants():
 #     def removeRestaurantReview(review_id):
 #         reviews.remove(findReviewByID(review_id))
 #
+app.run(port = Port)
