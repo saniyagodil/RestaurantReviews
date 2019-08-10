@@ -530,21 +530,33 @@ reviews = [
 def getAllRestaurants():
     return jsonify(restaurants)
 
+@app.route('/review', methods=['GET'])
+def getAllReviews():
+    return jsonify(reviews)
+
+
 # @app.route('review/<restaurant_id>', methods=['POST'])
 #     def addRestaurantReview(restaurant_id):
 #         reviews.append({})
 #         ##figure out how to get the json item
 
-# def findReviewByID(id):
+# def findReviewByID(review_id):
 #       for review in reviews:
-#           if review.get("id") == id
+#           if review.get("id") = review_id
 #             return review
 #       raise Exception("Not found")
 
 
 
-# @app.route('review/<restaurant_id>/<review_id>', methods=['DELETE'])
-#     def removeRestaurantReview(review_id):
-#         reviews.remove(findReviewByID(review_id))
-#
+@app.route('/review/<review_id>', methods=['GET'])
+def removeRestaurantReview(review_id):
+  # print(review_id)
+  # return review_id
+        # reviews.remove(findReviewByID(review_id))
+  for item in reviews:
+    if(item.get("id") == review_id):
+      return jsonify(item)
+ 
+
+
 app.run(port = Port)
