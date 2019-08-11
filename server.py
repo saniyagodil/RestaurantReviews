@@ -548,18 +548,15 @@ def getAllReviews():
 
 
 
-@app.route('/review/<review_id>', methods=['GET'])
+@app.route('/review/<int:review_id>', methods=['GET'])
 def removeRestaurantReview(review_id):
-  print(review_id)
-  # return review_id
-        # reviews.remove(findReviewByID(review_id))
-  review = "None found"
-  for item in reviews:
-    print(item.get("id"))
-    if(item.get("id") == review_id):
-      review = item
-  print(review)    
-  return jsonify(review)
+  reviewToRemove = "None found"
+  for review in reviews:
+    if(review.get("id") == review_id):
+      reviewToRemove = review
+  print(reviewToRemove)    
+  reviews.remove(reviewToRemove)
+  return jsonify(reviews)
  
 
 
