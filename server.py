@@ -540,8 +540,8 @@ def removeRestaurantReview(review_id):
   for review in reviews:
     if(review.get("id") == review_id):
       reviewToRemove = review
-  print(reviewToRemove)    
-  reviews.remove(reviewToRemove)
+  if reviewToRemove != "None found":   
+    reviews.remove(reviewToRemove)
   return jsonify(reviews)
  
 @app.route('review/<restaurant_id>', methods=['POST'])
