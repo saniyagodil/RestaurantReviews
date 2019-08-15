@@ -549,9 +549,13 @@ def getRestaurantByID(restaurant_id):
     if(restaurant.get("id") == restaurant_id):
       return jsonify(restaurant)  
 
-# @app.route('/reviews/?restaurant_id=<restaurant_id>', methods=['GET'])
-# def getAllReviewsForRestaurant():
-
+@app.route('/reviews/<int:restaurant_id>', methods=['GET'])
+def getAllReviewsForRestaurant(restaurant_id):
+  results = []
+  for review in reviews:
+    if(review.get("restaurant_id") == restaurant_id):
+      results.append(review)
+  return jsonify(results) 
 
 @app.route('/review/<int:review_id>', methods=['GET'])
 def removeRestaurantReview(review_id):
