@@ -13,6 +13,7 @@ app.config["DEBUG"] = True
 
 Port = 8000
 false = False
+true = True
 restaurants = [
 {
         "name": "Mission Chinese Food",
@@ -36,7 +37,7 @@ restaurants = [
         "createdAt": 1504095563444,
         "updatedAt": "2017-09-14T14:01:27.653Z",
         "id": 1,
-        "is_favorite": false
+        "is_favorite": true
       },
       {
         "name": "Emily",
@@ -130,7 +131,7 @@ restaurants = [
         },
         "createdAt": 1504095567071,
         "updatedAt": 1504095567071,
-        "is_favorite": false,
+        "is_favorite": true,
         "id": 5
       },
       {
@@ -526,13 +527,28 @@ reviews = [
       }]
 
 
-@app.route('/restaurant', methods=['GET'])
+@app.route('/restaurants', methods=['GET'])
 def getAllRestaurants():
     return jsonify(restaurants)
 
 @app.route('/review', methods=['GET'])
 def getAllReviews():
     return jsonify(reviews)
+
+@app.route('/restaurants/favorites', methods=['GET'])   
+def getFavoritedRestaurants():
+  results = []
+  for restaurant in restaurants:
+    if(restaurant.get("is_favorite") == True):
+      results.append(restaurant)
+  return jsonify(results)    
+
+# @app.route('/restaurants/<int:restaurant_id>', methods=['GET']) 
+# def getRestaurantByID():
+
+# @app.route('/reviews/?restaurant_id=<restaurant_id>', methods=['GET'])
+# def getAllReviewsForRestaurant():
+
 
 @app.route('/review/<int:review_id>', methods=['GET'])
 def removeRestaurantReview(review_id):
