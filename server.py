@@ -571,6 +571,6 @@ def addRestaurantReview(restaurant_id):
   if request.headers['Content-Type'] == 'application/json':
     reviews.append(request.json)
     ##figure out how to get the json item
-
+    return 'OK'
 
 app.run(port = Port)
