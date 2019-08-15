@@ -531,7 +531,7 @@ reviews = [
 def getAllRestaurants():
     return jsonify(restaurants)
 
-@app.route('/review', methods=['GET'])
+@app.route('/reviews', methods=['GET'])
 def getAllReviews():
     return jsonify(reviews)
 
@@ -549,7 +549,7 @@ def getRestaurantByID(restaurant_id):
     if(restaurant.get("id") == restaurant_id):
       return jsonify(restaurant)  
 
-@app.route('/reviews/<int:restaurant_id>', methods=['GET'])
+@app.route('/reviews/restaurant/<int:restaurant_id>', methods=['GET'])
 def getAllReviewsForRestaurant(restaurant_id):
   results = []
   for review in reviews:
@@ -557,15 +557,16 @@ def getAllReviewsForRestaurant(restaurant_id):
       results.append(review)
   return jsonify(results) 
 
-@app.route('/review/<int:review_id>', methods=['GET'])
+@app.route('/reviews/remove/<int:review_id>', methods=['GET'])
 def removeRestaurantReview(review_id):
+  review_id = request.json.get("id")
   for review in reviews:
     if(review.get("id") == review_id):
       reviews.remove(review)
       break
   return jsonify(reviews)  
 
-@app.route('/review/<restaurant_id>', methods=['POST'])
+@app.route('/reviews/<restaurant_id>', methods=['POST'])
 def addRestaurantReview(restaurant_id):
   if request.headers['Content-Type'] == 'application/json':
     reviews.append(request.json)
