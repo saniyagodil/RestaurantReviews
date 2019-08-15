@@ -543,8 +543,11 @@ def getFavoritedRestaurants():
       results.append(restaurant)
   return jsonify(results)    
 
-# @app.route('/restaurants/<int:restaurant_id>', methods=['GET']) 
-# def getRestaurantByID():
+@app.route('/restaurants/<int:restaurant_id>', methods=['GET']) 
+def getRestaurantByID(restaurant_id):
+  for restaurant in restaurants:
+    if(restaurant.get("id") == restaurant_id):
+      return jsonify(restaurant)  
 
 # @app.route('/reviews/?restaurant_id=<restaurant_id>', methods=['GET'])
 # def getAllReviewsForRestaurant():
