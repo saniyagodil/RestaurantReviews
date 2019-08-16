@@ -574,5 +574,6 @@ def addRestaurantReview(restaurant_id):
     review["restaurant_id"] = restaurant_id
     reviews.append(review)
     return 'OK'
+    #Might want to implement a different way of id to ensure that the id being used isnt already being used
 
 app.run(port = Port)
