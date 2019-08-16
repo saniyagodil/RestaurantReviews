@@ -569,8 +569,10 @@ def removeRestaurantReview(review_id):
 @app.route('/reviews/<restaurant_id>', methods=['POST'])
 def addRestaurantReview(restaurant_id):
   if request.headers['Content-Type'] == 'application/json':
-    reviews.append(request.json)
-    ##figure out how to get the json item
+    review = request.json
+    review["id"] = len(reviews) + 1
+    review["restaurant_id"] = restaurant_id
+    reviews.append(review)
     return 'OK'
 
 app.run(port = Port)
